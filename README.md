@@ -59,3 +59,6 @@ docker compose logs -f app
 ## Documents
 
 See `docs/`. Fill each one in; run every command you write in a clean checkout.
+
+## Development Practice
+This section was added on my feature branch.
