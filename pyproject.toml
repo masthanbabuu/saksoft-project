@@ -30,6 +30,7 @@ dependencies = [
     "pillow>=13.0.0",
     "pdf2image>=1.17.0",
     "tiktoken>=0.14.0",
+    "psycopg[binary]>=3.3.8",
 ]
 
 [dependency-groups]
