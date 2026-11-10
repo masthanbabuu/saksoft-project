@@ -8,7 +8,7 @@ A missing or invalid required value stops the app at start-up with a clear messa
 
 from functools import lru_cache
 
-from pydantic import SecretStr
+from pydantic import SecretStr, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -40,6 +40,24 @@ class Settings(BaseSettings):
     def docs_enabled(self) -> bool:
         """Interactive API docs only in development (ARC-09)."""
         return self.app_environment == "development"
+
+    @model_validator(mode="after")
+    def validate_production_settings(self) -> Settings:
+        """Require database and LLM credentials in production only."""
+        if self.app_environment == "production":
+            missing = []
+            if not self.postgres_password.get_secret_value():
+                missing.append("POSTGRES_PASSWORD")
+            if not self.llm_base_url:
+                missing.append("LLM_BASE_URL")
+            if not self.llm_model:
+                missing.append("LLM_MODEL")
+            if not self.llm_api_key.get_secret_value():
+                missing.append("LLM_API_KEY")
+
+            if missing:
+                raise ValueError("Missing required production settings: " + ", ".join(missing))
+        return self
 
 
 @lru_cache

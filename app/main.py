@@ -9,6 +9,7 @@ import logging
 import uuid
 
 from fastapi import FastAPI, Request
+from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 
 from app.config import get_settings
@@ -38,11 +39,42 @@ def create_app() -> FastAPI:
         request_id = request.headers.get("X-Request-ID") or str(uuid.uuid4())
         token = request_id_var.set(request_id)
         try:
-            response = await call_next(request)
+            try:
+                response = await call_next(request)
+            except Exception:
+                logger.exception("unhandled error")
+                response = JSONResponse(
+                    status_code=500,
+                    content={
+                        "error": {
+                            "code": "internal_error",
+                            "message": "Something went wrong.",
+                            "request_id": request_id,
+                        }
+                    },
+                )
+            response.headers["X-Request-ID"] = request_id
+            return response
         finally:
             request_id_var.reset(token)
-        response.headers["X-Request-ID"] = request_id
-        return response
+
+    @app.exception_handler(RequestValidationError)
+    async def validation_error(
+        request: Request,
+        exc: RequestValidationError,
+    ) -> JSONResponse:
+        """Return validation errors in the standard safe error format."""
+        request_id = request_id_var.get()
+        return JSONResponse(
+            status_code=422,
+            content={
+                "error": {
+                    "code": "validation_error",
+                    "message": "Request validation failed.",
+                    "request_id": request_id,
+                }
+            },
+        )
 
     @app.exception_handler(Exception)
     async def unhandled_error(request: Request, exc: Exception) -> JSONResponse:

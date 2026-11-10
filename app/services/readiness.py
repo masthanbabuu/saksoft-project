@@ -1,14 +1,33 @@
 """What "ready" means for this service.
 
-Add a check here for each thing the service needs (database, model provider, ...).
 Each check returns a short problem text, or nothing when all is well.
 """
 
+import logging
+
+import psycopg
+
+from app.config import get_settings
+
+logger = logging.getLogger(__name__)
+
 
 def check_dependencies() -> list[str]:
-    """Return a list of problems. An empty list means ready.
+    """Check that required dependencies are reachable."""
+    settings = get_settings()
 
-    TODO(trainee, day 7 and 11): add a database check here, for example open a connection
-    with a short timeout and run `SELECT 1`. Always use a timeout (PY-12).
-    """
+    try:
+        with psycopg.connect(
+            host=settings.postgres_host,
+            port=settings.postgres_port,
+            dbname=settings.postgres_db,
+            user=settings.postgres_user,
+            password=settings.postgres_password.get_secret_value(),
+            connect_timeout=3,
+        ) as connection:
+            connection.execute("SELECT 1")
+    except psycopg.Error:
+        logger.warning("database readiness check failed")
+        return ["database unavailable"]
+
     return []
