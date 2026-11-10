@@ -1,0 +1,102 @@
+[
+  {
+    "id": "P01",
+    "title": "Delivery attempts",
+    "text": "Delivery attempts. Drivers make two delivery attempts. After the second failed attempt, the parcel is held at the local depot for five calendar days."
+  },
+  {
+    "id": "P02",
+    "title": "Delivery delays",
+    "text": "Delivery delays. A parcel delayed beyond its estimated delivery date should be checked using its tracking ID. Customers receive an updated estimate when available."
+  },
+  {
+    "id": "P03",
+    "title": "Damaged parcels",
+    "text": "Damaged parcels. Customers should report visible parcel damage within 48 hours of delivery and provide photographs of the packaging and damaged contents."
+  },
+  {
+    "id": "P04",
+    "title": "Lost parcels",
+    "text": "Lost parcels. A parcel with no tracking scan for seven consecutive days is eligible for a missing-parcel investigation."
+  },
+  {
+    "id": "P05",
+    "title": "Address correction",
+    "text": "Address correction. Address changes are allowed before the parcel reaches the destination hub. Changes after dispatch may incur a redirection fee."
+  },
+  {
+    "id": "P06",
+    "title": "Tracking updates",
+    "text": "Tracking updates. Tracking events may take up to 24 hours to appear after a physical scan. The tracking ID is required for a status enquiry."
+  },
+  {
+    "id": "P07",
+    "title": "Delivery proof",
+    "text": "Delivery proof. Proof of delivery includes delivery timestamp and recipient confirmation. A photograph may be available for eligible doorstep deliveries."
+  },
+  {
+    "id": "P08",
+    "title": "Recipient unavailable",
+    "text": "Recipient unavailable. If the recipient is unavailable, the driver records the attempt and may leave a delivery notice with redelivery instructions."
+  },
+  {
+    "id": "P09",
+    "title": "Redelivery",
+    "text": "Redelivery. Customers can request one free redelivery within five days of a failed delivery attempt. Further attempts may incur a fee."
+  },
+  {
+    "id": "P10",
+    "title": "Parcel cancellation",
+    "text": "Parcel cancellation. A shipment can be cancelled before pickup. Once collected by the carrier, cancellation requires a return-to-sender request."
+  },
+  {
+    "id": "P11",
+    "title": "Prohibited items",
+    "text": "Prohibited items. Explosives, illegal drugs, firearms, live animals and hazardous chemicals are prohibited. Restricted goods require prior written approval."
+  },
+  {
+    "id": "P12",
+    "title": "Packaging standards",
+    "text": "Packaging standards. Fragile items must use a rigid outer box, protective cushioning and a fragile label. The sender is responsible for suitable packaging."
+  },
+  {
+    "id": "P13",
+    "title": "Weight limits",
+    "text": "Weight limits. Standard parcels may weigh up to 30 kilograms. Heavier shipments require freight service and advance approval."
+  },
+  {
+    "id": "P14",
+    "title": "Delivery coverage",
+    "text": "Delivery coverage. Remote-area deliveries may require additional time. The serviceability check uses the destination postal code."
+  },
+  {
+    "id": "P15",
+    "title": "Refund eligibility",
+    "text": "Refund eligibility. Shipping fees may be refunded when the carrier confirms a service failure attributable to the carrier. Requests must include the shipment ID."
+  },
+  {
+    "id": "P16",
+    "title": "Claims process",
+    "text": "Claims process. Damage and loss claims require the shipment ID, purchase invoice and supporting photographs where applicable. Claims are reviewed within ten business days."
+  },
+  {
+    "id": "P17",
+    "title": "Cash on delivery",
+    "text": "Cash on delivery. Cash-on-delivery amounts must match the amount recorded on the shipment label. Payment is collected before parcel handover."
+  },
+  {
+    "id": "P18",
+    "title": "International shipping",
+    "text": "International shipping. International shipments require an accurate customs declaration, item description and declared value. Customs authorities may inspect or delay parcels."
+  },
+  {
+    "id": "P19",
+    "title": "Customer support",
+    "text": "Customer support. Support requests should include the tracking ID, registered phone number and a short description of the issue."
+  },
+  {
+    "id": "P20",
+    "title": "Return to sender",
+    "text": "Return to sender. Undeliverable parcels are returned to the sender after the five-day depot holding period unless the customer arranges redelivery."
+  }
+]

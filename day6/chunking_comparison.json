@@ -1,0 +1,17 @@
+{
+  "fixed_overlap": {
+    "chunks": 42,
+    "top3_hits": 10,
+    "top3_accuracy": 1.0
+  },
+  "sentence": {
+    "chunks": 55,
+    "top3_hits": 10,
+    "top3_accuracy": 1.0
+  },
+  "sentence_window": {
+    "chunks": 35,
+    "top3_hits": 10,
+    "top3_accuracy": 1.0
+  }
+}
