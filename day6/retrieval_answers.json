@@ -1,0 +1,82 @@
+[
+  {
+    "question": "Where are parcels held after two failed delivery attempts?",
+    "answer": "The policy does not specify.",
+    "expected_policy": "P01",
+    "retrieved_policy": "P01",
+    "top3_contains_expected": true,
+    "seconds": 7.73
+  },
+  {
+    "question": "When should customers report visible damage?",
+    "answer": "Customers should report visible parcel damage within 48 hours of delivery.",
+    "expected_policy": "P03",
+    "retrieved_policy": "P03",
+    "top3_contains_expected": true,
+    "seconds": 2.37
+  },
+  {
+    "question": "When can a missing parcel investigation begin?",
+    "answer": "The policy does not specify.",
+    "expected_policy": "P04",
+    "retrieved_policy": "P04",
+    "top3_contains_expected": true,
+    "seconds": 1.56
+  },
+  {
+    "question": "Until when can a customer change the delivery address?",
+    "answer": "Address changes are allowed before the parcel reaches the destination hub.",
+    "expected_policy": "P05",
+    "retrieved_policy": "P05",
+    "top3_contains_expected": true,
+    "seconds": 2.32
+  },
+  {
+    "question": "How long can tracking events take to appear?",
+    "answer": "Tracking events may take up to 24 hours to appear after a physical scan.",
+    "expected_policy": "P06",
+    "retrieved_policy": "P06",
+    "top3_contains_expected": true,
+    "seconds": 2.65
+  },
+  {
+    "question": "What evidence is needed for a damage claim?",
+    "answer": "The policy does not specify.",
+    "expected_policy": "P16",
+    "retrieved_policy": "P16",
+    "top3_contains_expected": true,
+    "seconds": 1.83
+  },
+  {
+    "question": "What is the maximum standard parcel weight?",
+    "answer": "The maximum standard parcel weight is 30 kilograms.",
+    "expected_policy": "P13",
+    "retrieved_policy": "P13",
+    "top3_contains_expected": true,
+    "seconds": 2.26
+  },
+  {
+    "question": "How many free redelivery requests are allowed?",
+    "answer": "One.",
+    "expected_policy": "P09",
+    "retrieved_policy": "P09",
+    "top3_contains_expected": true,
+    "seconds": 1.14
+  },
+  {
+    "question": "What documents are needed for international customs?",
+    "answer": "The policy does not specify.",
+    "expected_policy": "P18",
+    "retrieved_policy": "P18",
+    "top3_contains_expected": true,
+    "seconds": 1.64
+  },
+  {
+    "question": "When are parcels returned to the sender?",
+    "answer": "Parcels are returned to the sender after the five-day depot holding period.",
+    "expected_policy": "P20",
+    "retrieved_policy": "P20",
+    "top3_contains_expected": true,
+    "seconds": 2.73
+  }
+]

@@ -1,0 +1,92 @@
+[
+  {
+    "file": "invoice.png",
+    "model": "llama3.2",
+    "usage": {
+      "completion_tokens": 193,
+      "prompt_tokens": 236,
+      "total_tokens": 429,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cache_write_tokens": null,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null
+      }
+    },
+    "ocr_text": "INVOICE\n\nBrightwater Supplies Ltd (invented) Invoice no: INV-2026-0417\n12 Example Street, Sampletown (invented address) Date: 2026-03-14\n\nDue: 2026-04-13\n\nBill to: Demo Customer Co (invented)\n\nDescription Qty Unit price Amount\nOffice chairs 4 3,200.00 12,800.00\nDesk lamps 10 450.00 4,500.00\nDelivery 1 600.00 600.00\n\nSubtotal: 17,900.00\nTax 18%: 3,222.00\nTotal due: 21,122.00\n\nPayment: bank transfer, reference = invoice no. All details invented for training.\n",
+    "invoice": {
+      "invoice_number": "INV-2026-0417",
+      "invoice_date": "2026-03-14",
+      "vendor": "Brightwater Supplies Ltd",
+      "customer": "Demo Customer Co",
+      "subtotal": 17900.0,
+      "tax": 3222.0,
+      "total": 21122.0,
+      "currency": "null",
+      "line_items": [
+        {
+          "description": "Office chairs",
+          "qty": 4,
+          "unit_price": 3200.0,
+          "amount": 12800.0
+        },
+        {
+          "description": "Desk lamps",
+          "qty": 10,
+          "unit_price": 450.0,
+          "amount": 4500.0
+        },
+        {
+          "description": "Delivery",
+          "qty": 1,
+          "unit_price": 600.0,
+          "amount": 600.0
+        }
+      ]
+    }
+  },
+  {
+    "file": "invoice_scan.pdf",
+    "model": "llama3.2",
+    "usage": {
+      "completion_tokens": 152,
+      "prompt_tokens": 247,
+      "total_tokens": 399,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cache_write_tokens": null,
+        "cached_tokens": 73,
+        "image_tokens": null,
+        "text_tokens": null
+      }
+    },
+    "ocr_text": "INVOICE\n\nHarbourlight Stationers (invented) Invoice no: INV-2026-0533\n12 Example Street, Sampletown (invented address) Date: 2026-03-14\n\nDue: 2026-04-13\n\nBill to: Demo Customer Co (invented)\n\nDescription Qty \u2014_ Unitprice Amount\nPSI ic a cn nc\n\nA4 paper boxes | 20 620.00 10,400.00\n\nToner cartridges 3 4,100.00 12,300.00\n\nSP PL a na on rena\n\nSubtotal: 22,700.00\nTax 18%: 4,086.00\nTotal due: 26, 786.00\n\nPayment: bank transfer, reference = invoice no. All details invented for training.\n",
+    "invoice": {
+      "invoice_number": "INV-2026-0533",
+      "invoice_date": "2026-03-14",
+      "vendor": "Harbourlight Stationers",
+      "customer": "Demo Customer Co",
+      "subtotal": 22600.0,
+      "tax": 4086.0,
+      "total": 26786.0,
+      "currency": null,
+      "line_items": [
+        {
+          "description": "A4 paper boxes",
+          "qty": 20,
+          "unitprice": 620,
+          "amount": 10400
+        },
+        {
+          "description": "Toner cartridges",
+          "qty": 3,
+          "unitprice": 4100,
+          "amount": 12300
+        }
+      ]
+    }
+  }
+]

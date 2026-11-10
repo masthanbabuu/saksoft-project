@@ -25,6 +25,11 @@ dependencies = [
     "httpx",               # outbound HTTP calls (always set a timeout)
     "jinja2",              # HTML templates for the small web page
     "python-multipart",    # needed by FastAPI for HTML form posts
+    "openai>=3.46.0",
+    "pytesseract>=0.3.13",
+    "pillow>=13.0.0",
+    "pdf2image>=1.17.0",
+    "tiktoken>=0.14.0",
 ]
 
 [dependency-groups]

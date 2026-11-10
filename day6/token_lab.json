@@ -1,0 +1,26 @@
+{
+  "prose": {
+    "tokens": 15,
+    "characters": 75
+  },
+  "code": {
+    "tokens": 21,
+    "characters": 74
+  },
+  "json": {
+    "tokens": 17,
+    "characters": 56
+  },
+  "Spanish": {
+    "tokens": 16,
+    "characters": 50
+  },
+  "Hindi": {
+    "tokens": 46,
+    "characters": 48
+  },
+  "Telugu": {
+    "tokens": 82,
+    "characters": 48
+  }
+}

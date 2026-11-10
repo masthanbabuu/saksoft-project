@@ -1,0 +1,11 @@
+file,expected_name,extracted_name,name_correct,expected_email,extracted_email,email_correct,expected_phone,extracted_phone,phone_correct,review_notes
+cv_01.txt,,Asha Alder,,,asha.alder@example.com,,,+00 555 588 8287,,
+cv_02.txt,,Bram Brook,,,bram.brook@example.com,,,+00 555 274 1814,,
+cv_03.txt,,Chen Cole,,,chen.cole@example.com,,,+00 555 148 2290,,
+cv_04.txt,,Dara Dunn,,,dara.dunn@example.com,,,+00 555 658 9225,,
+cv_05.txt,,Elio Ellis,,,elio.ellis@example.com,,,+00 555 570 7880,,
+cv_06.txt,,Farah Frost,,,farah.frost@example.com,,,+00 555 369 8379,,
+cv_07.txt,,Goran Grove,,,goran.grove@example.com,,,+00 555 286 2483,,
+cv_08.txt,,Hana Hale,,,hana.hale@example.com,,,+00 555 281 5107,,
+cv_09.txt,,Ivo Ivey,,,ivo.ivey@example.com,,,+00 555 264 6765,,
+cv_10.txt,,Jun Joyce,,,jun.joyce@example.com,,,+00 555 578 2521,,
