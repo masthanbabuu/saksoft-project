@@ -1,0 +1,66 @@
+{
+  "cv_files": 20,
+  "cv_success": 20,
+  "invoice_files": 2,
+  "invoice_success": 2,
+  "benchmarks": [
+    {
+      "test": "default",
+      "model": "llama3.2",
+      "seconds": 0.785,
+      "usage": {
+        "completion_tokens": 4,
+        "prompt_tokens": 39,
+        "total_tokens": 43,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 18,
+          "image_tokens": null,
+          "text_tokens": null
+        }
+      },
+      "success": true
+    },
+    {
+      "test": "temperature_seed",
+      "model": "llama3.2",
+      "seconds": 0.486,
+      "usage": {
+        "completion_tokens": 4,
+        "prompt_tokens": 39,
+        "total_tokens": 43,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 38,
+          "image_tokens": null,
+          "text_tokens": null
+        }
+      },
+      "success": true
+    },
+    {
+      "test": "context_limit",
+      "model": "llama3.2",
+      "seconds": 0.402,
+      "usage": {
+        "completion_tokens": 4,
+        "prompt_tokens": 39,
+        "total_tokens": 43,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 38,
+          "image_tokens": null,
+          "text_tokens": null
+        }
+      },
+      "success": true
+    }
+  ],
+  "accuracy_review": "Complete accuracy_review_10.csv against source CVs"
+}
