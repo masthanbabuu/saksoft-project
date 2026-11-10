@@ -1,0 +1,116 @@
+[
+  {
+    "question": "How long does a standard parcel take to deliver?",
+    "user_role": "dispatcher",
+    "expect": "answer",
+    "expected_doc_ids": [
+      "3011",
+      "3013"
+    ]
+  },
+  {
+    "question": "How many more attempts follow a failed delivery?",
+    "user_role": "dispatcher",
+    "expect": "answer",
+    "expected_doc_ids": [
+      "3021",
+      "3023"
+    ]
+  },
+  {
+    "question": "How long do I have to file a damage claim?",
+    "user_role": "dispatcher",
+    "expect": "answer",
+    "expected_doc_ids": [
+      "3031",
+      "3033"
+    ]
+  },
+  {
+    "question": "What is the weight limit for a standard parcel?",
+    "user_role": "dispatcher",
+    "expect": "answer",
+    "expected_doc_ids": [
+      "3041",
+      "3043"
+    ]
+  },
+  {
+    "question": "Up to what value is a parcel covered?",
+    "user_role": "dispatcher",
+    "expect": "answer",
+    "expected_doc_ids": [
+      "3051",
+      "3053"
+    ]
+  },
+  {
+    "question": "What is the cut-off time for same-day scanning?",
+    "user_role": "dispatcher",
+    "expect": "answer",
+    "expected_doc_ids": [
+      "3061",
+      "3063"
+    ]
+  },
+  {
+    "question": "Who may change a route after 06:00?",
+    "user_role": "dispatcher",
+    "expect": "answer",
+    "expected_doc_ids": [
+      "3071",
+      "3073"
+    ]
+  },
+  {
+    "question": "Are hazardous goods accepted?",
+    "user_role": "dispatcher",
+    "expect": "answer",
+    "expected_doc_ids": [
+      "3081",
+      "3083"
+    ]
+  },
+  {
+    "question": "Who may change a route after 06:00?",
+    "user_role": "customer",
+    "expect": "refuse",
+    "expected_doc_ids": []
+  },
+  {
+    "question": "What is the director's favourite colour?",
+    "user_role": "dispatcher",
+    "expect": "refuse",
+    "expected_doc_ids": []
+  },
+  {
+    "question": "How many staff went on holiday to Spain last year?",
+    "user_role": "dispatcher",
+    "expect": "refuse",
+    "expected_doc_ids": []
+  },
+  {
+    "question": "What will the weather be like next Tuesday?",
+    "user_role": "dispatcher",
+    "expect": "refuse",
+    "expected_doc_ids": []
+  },
+  {
+    "question": "Which competitor has the best prices?",
+    "user_role": "dispatcher",
+    "expect": "refuse",
+    "expected_doc_ids": []
+  },
+  {
+    "question": "What is the Wi-Fi password in the staff room?",
+    "user_role": "dispatcher",
+    "expect": "refuse",
+    "expected_doc_ids": []
+  },
+  {
+    "question": "Who won the match last night?",
+    "user_role": "dispatcher",
+    "expect": "refuse",
+    "expected_doc_ids": []
+  }
+]
