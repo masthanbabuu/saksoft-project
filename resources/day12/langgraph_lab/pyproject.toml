@@ -1,0 +1,25 @@
+# No version numbers on purpose: `uv lock` picks the newest working ones and writes uv.lock.
+# Commit uv.lock. See starter_kit/PLACEHOLDERS.md.
+[project]
+name = "langgraph-agent-lab"
+version = "0.1.0"
+description = "The same tool-calling agent in plain Python and in LangGraph, hosted behind FastAPI."
+requires-python = ">=3.14"
+dependencies = [
+    "langgraph",        # the orchestration library (MIT licence)
+    "fastapi",
+    "uvicorn[standard]",
+    "httpx",            # used by our own model client; always with a timeout
+    "pydantic",
+]
+
+[dependency-groups]
+dev = ["pytest", "ruff"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["."]
+python_files = ["test_*.py"]
+
+[tool.ruff]
+line-length = 110
