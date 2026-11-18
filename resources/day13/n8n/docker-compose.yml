@@ -1,0 +1,66 @@
+# n8n with its own PostgreSQL database (day 13). Based on the official Docker pages:
+#   https://docs.n8n.io/hosting/installation/docker/
+#   https://docs.n8n.io/hosting/installation/server-setups/docker-compose/
+#
+# Replace the <PLACEHOLDERS> first (starter_kit/PLACEHOLDERS.md):
+#   <N8N_IMAGE_TAG>  a released n8n version (never "latest", Playbook N8N-10)
+#   <POSTGRES_IMAGE_TAG>, <POSTGRES_IMAGE_DIGEST>  a supported Postgres major release, pinned by digest
+#   <POSTGRES_DATA_PATH>  the data folder for that release
+#
+# LICENCE REMINDER: n8n uses the Sustainable Use License: internal business, non-commercial or
+# personal use. Before you deploy it at a customer, confirm the position with n8n or your
+# legal team and write it in the docs (Playbook N8N-14, ORCH-02).
+#
+# Commands you will use:
+#   docker compose up -d        start in the background
+#   docker compose ps           see what runs
+#   docker compose logs -f n8n  follow the log
+#   docker compose pull && docker compose down && docker compose up -d     update
+services:
+  n8n:
+    image: n8nio/n8n:2.47.4
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:5678:5678"          # this computer only; a proxy gives HTTPS later (N8N-11)
+    environment:
+      # Set your own time zone name here, for example a region name from the tz database.
+      GENERIC_TIMEZONE: ${TIMEZONE}     # used by schedule nodes
+      TZ: ${TIMEZONE}                   # the container's own clock
+      N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS: "true"
+      # Store workflow data in PostgreSQL instead of the default SQLite file.
+      DB_TYPE: postgresdb
+      DB_POSTGRESDB_HOST: db
+      DB_POSTGRESDB_PORT: "5432"
+      DB_POSTGRESDB_DATABASE: ${POSTGRES_DB}
+      DB_POSTGRESDB_USER: ${POSTGRES_USER}
+      DB_POSTGRESDB_PASSWORD: ${POSTGRES_PASSWORD}
+      # Encrypts the credentials n8n stores. BACK IT UP: if you lose it, saved credentials are unreadable.
+      N8N_ENCRYPTION_KEY: ${N8N_ENCRYPTION_KEY}
+    volumes:
+      # The official page keeps the .n8n folder even with PostgreSQL: it holds keys and other data.
+      - n8n_data:/home/node/.n8n
+    depends_on:
+      db:
+        condition: service_healthy
+    mem_limit: 1g
+    security_opt: ["no-new-privileges:true"]
+
+  db:
+    image: postgres:18.6@sha256:e3d24f6906d0760bf4da0dae872415391ededefad23fd471c47dc53b0ddf3c42
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - n8n_db:/var/lib/postgresql     # see PLACEHOLDERS.md for the path of your Postgres version
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    # No ports: only n8n (on the same Compose network) may reach the database (DB-12).
+
+volumes:
+  n8n_data:
+  n8n_db:
