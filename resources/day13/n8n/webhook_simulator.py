@@ -1,5 +1,4 @@
 """Webhook simulator: sends test messages to an n8n webhook (days 13 and 15).
-
 WHY: you need a way to test your workflow that is not "type in a chat window". This script
 sends good messages AND bad ones, so you can prove that your workflow rejects what it should
 (Playbook N8N-05: authenticate every webhook and validate the payload first).
@@ -18,6 +17,7 @@ The expected outcome for each case is written next to it. A "WRONG" row means yo
 accepted something it should have refused (or refused something it should have accepted).
 """
 
+# ruff: noqa: T201
 import os
 import sys
 
@@ -55,11 +55,9 @@ def send(url: str, secret: str, use_secret, payload: dict) -> int:
     headers = {}
     if use_secret is True:
         headers[HEADER_NAME] = secret
-    elif use_secret == "wrong":
+    elif use_secret == "wrong":  # noqa: S105
         headers[HEADER_NAME] = "not-the-secret"
-    response = httpx.post(
-        url, json=payload, headers=headers, timeout=15.0
-    )  # always a timeout
+    response = httpx.post(url, json=payload, headers=headers, timeout=15.0)  # always a timeout
     return response.status_code
 
 
@@ -68,7 +66,8 @@ def main() -> int:
     secret = os.environ.get("WEBHOOK_SECRET")
     if not url or not secret:
         print(
-            "Set WEBHOOK_URL and WEBHOOK_SECRET in the environment first (see the top of this file)."
+            "Set WEBHOOK_URL and WEBHOOK_SECRET in the environment "
+            "first (see the top of this file)."
         )
         return 2
     wrong = 0

@@ -1,17 +1,17 @@
 """Checks the simulator against a tiny local server that behaves like a SAFE webhook."""
 
+# ruff: noqa: S101
 import threading
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
 import pytest
-
 import webhook_simulator
 
-SECRET = "test-secret-value"
+SECRET = "test-secret-value"  # noqa: S105
 
 
 class SafeWebhook(BaseHTTPRequestHandler):
-    def do_POST(self):  # noqa: N802 (name required by the http.server module)
+    def do_POST(self):
         import json
 
         length = int(self.headers.get("Content-Length", 0))
