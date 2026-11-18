@@ -1,0 +1,18 @@
+<article class="answer-result">
+    <h3>Response</h3>
+    <p>{{ result.answer }}</p>
+
+    <h3>Citations</h3>
+    {% if result.citations %}
+        <ol>
+        {% for citation in result.citations %}
+            <li>
+                <strong>{{ citation.source }}</strong>
+                <p>{{ citation.passage }}</p>
+            </li>
+        {% endfor %}
+        </ol>
+    {% else %}
+        <p>No supporting citations are available for this response.</p>
+    {% endif %}
+</article>

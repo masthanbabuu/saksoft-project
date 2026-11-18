@@ -20,6 +20,7 @@ def test_docs_enabled_only_in_development():
 
     production = Settings(
         app_environment="production",
+        session_secret_key=SecretStr("test-session-secret-key"),
         postgres_password=SecretStr("test-db-password"),
         llm_base_url="https://example.com/v1",
         llm_model="test-model",
@@ -46,6 +47,7 @@ def test_production_settings_reject_missing_credentials():
 def test_production_settings_accept_all_required_credentials():
     settings = Settings(
         app_environment="production",
+        session_secret_key=SecretStr("test-session-secret-key"),
         postgres_password=SecretStr("test-db-password"),
         llm_base_url="https://example.com/v1",
         llm_model="test-model",

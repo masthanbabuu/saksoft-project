@@ -151,6 +151,7 @@ def test_api_docs_are_disabled_in_production(monkeypatch):
 
     production_settings = Settings(
         app_environment="production",
+        session_secret_key=SecretStr("test-session-secret-key"),
         postgres_password=SecretStr("test-only"),
         llm_base_url="https://example.com",
         llm_model="test-model",

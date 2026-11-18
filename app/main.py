@@ -11,10 +11,12 @@ import uuid
 from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
+from fastapi.staticfiles import StaticFiles
+from starlette.middleware.sessions import SessionMiddleware
 
 from app.config import get_settings
 from app.logging_config import request_id_var, setup_logging
-from app.routers import ask, health
+from app.routers import ask, health, knowledge
 
 logger = logging.getLogger(__name__)
 
@@ -32,6 +34,31 @@ def create_app() -> FastAPI:
         openapi_url="/openapi.json" if settings.docs_enabled else None,
         root_path=settings.app_base_path,
     )
+    app.add_middleware(
+        SessionMiddleware,
+        secret_key=settings.session_secret_key.get_secret_value(),
+        same_site="lax",
+        https_only=settings.app_environment == "production",
+    )
+
+    app.mount("/static", StaticFiles(directory="app/static"), name="static")
+
+    @app.middleware("http")
+    async def add_security_headers(request: Request, call_next):
+        response = await call_next(request)
+        response.headers["Content-Security-Policy"] = (
+            "default-src 'self'; "
+            "script-src 'self' https://cdn.jsdelivr.net; "
+            "style-src 'self'; "
+            "img-src 'self' data:; "
+            "connect-src 'self'; "
+            "form-action 'self'; "
+            "base-uri 'self'; "
+            "frame-ancestors 'none'"
+        )
+        response.headers["X-Content-Type-Options"] = "nosniff"
+        response.headers["X-Frame-Options"] = "DENY"
+        return response
 
     @app.middleware("http")
     async def add_request_id(request: Request, call_next):
@@ -93,6 +120,7 @@ def create_app() -> FastAPI:
 
     app.include_router(health.router)
     app.include_router(ask.router)
+    app.include_router(knowledge.router)
     return app
 
 

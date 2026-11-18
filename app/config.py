@@ -22,6 +22,7 @@ class Settings(BaseSettings):
     app_environment: str = "development"  # development | production
     app_base_path: str = ""  # set when the app sits behind a proxy prefix (ARC-12)
     app_timezone: str = "UTC"
+    session_secret_key: SecretStr = SecretStr("dev-only-change-this-secret")
 
     # --- database (a least-privilege role, not the admin: DB-02)
     postgres_host: str = "localhost"
@@ -46,6 +47,8 @@ class Settings(BaseSettings):
         """Require database and LLM credentials in production only."""
         if self.app_environment == "production":
             missing = []
+            if self.session_secret_key.get_secret_value() == "dev-only-change-this-secret":
+                missing.append("SESSION_SECRET_KEY")
             if not self.postgres_password.get_secret_value():
                 missing.append("POSTGRES_PASSWORD")
             if not self.llm_base_url:
