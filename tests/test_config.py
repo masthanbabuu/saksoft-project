@@ -30,7 +30,11 @@ def test_docs_enabled_only_in_development():
 
 
 def test_development_settings_allow_missing_credentials():
-    settings = Settings(app_environment="development")
+    settings = Settings(
+        app_environment="development",
+        postgres_password=SecretStr(""),
+        llm_api_key=SecretStr(""),
+    )
 
     assert settings.postgres_password.get_secret_value() == ""
     assert settings.llm_api_key.get_secret_value() == ""

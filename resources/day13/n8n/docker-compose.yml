@@ -19,10 +19,15 @@
 services:
   n8n:
     image: n8nio/n8n:2.47.4
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     restart: unless-stopped
     ports:
       - "127.0.0.1:5678:5678"          # this computer only; a proxy gives HTTPS later (N8N-11)
     environment:
+      EXECUTIONS_DATA_PRUNE: "true"
+      EXECUTIONS_DATA_MAX_AGE: "24"
+      EXECUTIONS_DATA_PRUNE_MAX_COUNT: "1000"
       # Set your own time zone name here, for example a region name from the tz database.
       GENERIC_TIMEZONE: ${TIMEZONE}     # used by schedule nodes
       TZ: ${TIMEZONE}                   # the container's own clock
