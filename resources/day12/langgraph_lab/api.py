@@ -1,39 +1,62 @@
-"""YOUR TASK, part 3 (day 18): host the graph behind YOUR OWN FastAPI app.
+"""FastAPI service for the LangGraph agent."""
 
-WHY NOT LangGraph's own server?  Hosting the vendor's server yourself needs a licence key (an
-Enterprise add-on, see the official self-hosting page). A normal FastAPI app that calls your
-graph is free, under your control, and follows the same Docker, health check and logging rules
-as every other service (Playbook ORCH-07).
+from typing import Any
+from uuid import uuid4
 
-Endpoints to build (the tests in test_api.py describe them):
-  GET  /health                                            -> {"status": "ok"}
-  POST /chat     {"question": "..."}                      -> {"thread_id": ..., "status": "done" | "needs_approval", ...}
-  POST /approve  {"thread_id": "...", "approved": true}   -> carries on after the human's decision
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel, Field
 
-Hints:
-  * One new thread ID (a UUID string) for every conversation; return it so the caller can approve later.
-  * Validate input with Pydantic (a question is 1 to 2000 characters).
-  * Build the graph once, on first use, from `get_model()` so tests can swap in a fake model.
-  * An unknown thread ID on /approve should give a 404 with a plain message, not a crash.
-"""
-
-from fastapi import FastAPI
-
+from agent_graph import build_graph, start, resume
 from llm import ChatModel, OpenAICompatibleChat
 
 app = FastAPI(title="LangGraph agent service")
 
-_graph = None  # built on first use (tests reset it)
+_graph = None
+
+
+class ChatRequest(BaseModel):
+    question: str = Field(min_length=1, max_length=2000)
+
+
+class ApprovalRequest(BaseModel):
+    thread_id: str
+    approved: bool
 
 
 def get_model() -> ChatModel:
-    """Create the real model client from the environment. Tests replace this function."""
     return OpenAICompatibleChat()
 
 
-def get_graph():
-    """Build the graph once and reuse it."""
-    raise NotImplementedError("Build the graph from get_model() on first use and keep it in _graph.")
+def get_graph() -> Any:
+    global _graph
+    if _graph is None:
+        _graph = build_graph(get_model())
+    return _graph
 
 
-# TODO: add the request models, then the three endpoints described above.
+@app.get("/health")
+def health() -> dict[str, str]:
+    return {"status": "ok"}
+
+
+@app.post("/chat")
+def chat(request: ChatRequest) -> dict[str, Any]:
+    thread_id = str(uuid4())
+    result = start(get_graph(), request.question, thread_id)
+    return {"thread_id": thread_id, **result}
+
+
+@app.post("/approve")
+def approve(request: ApprovalRequest) -> dict[str, Any]:
+    graph = get_graph()
+    config = {"configurable": {"thread_id": request.thread_id}}
+    state = graph.get_state(config)
+
+    if not state.values:
+        raise HTTPException(404, "Unknown thread ID")
+
+    if not any(task.interrupts for task in state.tasks):
+        raise HTTPException(409, "No pending approval")
+
+    result = resume(graph, request.thread_id, request.approved)
+    return {"thread_id": request.thread_id, **result}

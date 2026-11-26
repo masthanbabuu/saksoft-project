@@ -7,18 +7,18 @@
 # starter_kit/PLACEHOLDERS.md. Short form: open the image's official page, use the current
 # stable release, copy its tag and digest, paste them here.
 #
-#   <PYTHON_IMAGE_TAG>     the "-slim" tag of the latest stable Python
-#   <PYTHON_IMAGE_DIGEST>  the sha256 digest of that tag (pins the exact image, CTR-03)
-#   <UV_IMAGE_TAG>         the release tag of the uv tool image
+#   3.14.4-slim     the "-slim" tag of the latest stable Python
+#   2ca02f32b4d9d893863367ce07ec1972819f476dd38d8612f2a9cb6a41cbb727  the sha256 digest of that tag (pins the exact image, CTR-03)
+#   0.13.7         the release tag of the uv tool image
 
 # ---------------------------------------------------------------- stage 1: build
 # A "multi-stage" build keeps build tools out of the final image (CTR-01).
-FROM python:<PYTHON_IMAGE_TAG>@sha256:<PYTHON_IMAGE_DIGEST> AS builder
+FROM python:3.14.4-slim@sha256:2ca02f32b4d9d893863367ce07ec1972819f476dd38d8612f2a9cb6a41cbb727 AS builder
 
 # Copy the uv program from its official image instead of installing it with pip.
-COPY --from=ghcr.io/astral-sh/uv:<UV_IMAGE_TAG> /uv /bin/uv
+COPY --from=ghcr.io/astral-sh/uv:0.13.7 /uv /bin/uv
 
-WORKDIR /build
+WORKDIR /app
 
 # Copy only the dependency files first. Docker caches this step, so a code change does not
 # re-install every package. uv.lock must exist: run `uv lock` once and commit it (README, Quick start).
@@ -29,7 +29,7 @@ COPY pyproject.toml uv.lock ./
 RUN uv sync --locked --no-dev --no-install-project
 
 # ---------------------------------------------------------------- stage 2: run
-FROM python:<PYTHON_IMAGE_TAG>@sha256:<PYTHON_IMAGE_DIGEST> AS runtime
+FROM python:3.14.4-slim@sha256:2ca02f32b4d9d893863367ce07ec1972819f476dd38d8612f2a9cb6a41cbb727 AS runtime
 
 # Run as a normal user with a fixed ID, never as root (CTR-02).
 RUN useradd --create-home --uid 1000 --shell /bin/sh appuser
@@ -37,7 +37,7 @@ RUN useradd --create-home --uid 1000 --shell /bin/sh appuser
 WORKDIR /app
 
 # Bring the installed libraries from stage 1.
-COPY --from=builder /build/.venv /app/.venv
+COPY --from=builder /app/.venv /app/.venv
 ENV PATH="/app/.venv/bin:$PATH" \
     PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1
@@ -45,6 +45,7 @@ ENV PATH="/app/.venv/bin:$PATH" \
 # Copy the application code and give it to the normal user.
 COPY --chown=appuser:appuser app/ ./app/
 
+RUN mkdir -p /app/data/uploads && chown appuser:appuser /app/data/uploads && chmod 700 /app/data/uploads
 USER appuser
 EXPOSE 8000
 

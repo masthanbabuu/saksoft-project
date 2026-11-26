@@ -1,3 +1,32 @@
+CREATE TABLE IF NOT EXISTS parcels (
+    id BIGINT PRIMARY KEY,
+    name VARCHAR(150) NOT NULL,
+    status VARCHAR(30) NOT NULL,
+    category VARCHAR(50),
+    created_at DATE NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS hubs (
+    id BIGINT PRIMARY KEY,
+    parent_id BIGINT NOT NULL REFERENCES parcels(id),
+    label VARCHAR(50) NOT NULL,
+    amount NUMERIC(12,2) NOT NULL CHECK (amount >= 0)
+);
+
+CREATE TABLE IF NOT EXISTS scan_events (
+    id BIGINT PRIMARY KEY,
+    parent_id BIGINT NOT NULL REFERENCES hubs(id),
+    event VARCHAR(100) NOT NULL,
+    happened_at DATE NOT NULL
+);
+
+-- Indexes for common filtering and chronological sorting
+CREATE INDEX IF NOT EXISTS idx_parcels_status_created
+    ON parcels(status, created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_scan_events_parent_date
+    ON scan_events(parent_id, happened_at DESC);
+
+
 -- sql/schema.sql: the ONE definition of the database (Playbook DB-03).
 -- To change the schema, edit this file in place. Do not create separate ALTER files.
 -- Docker runs this file when the database is first created (see docker-compose.yml).
