@@ -24,6 +24,15 @@ class Settings(BaseSettings):
     app_timezone: str = "UTC"
     session_secret_key: SecretStr = SecretStr("dev-only-change-this-secret")
 
+    # --- application security
+    cors_allowed_origins: list[str] = [
+        "http://localhost:8000",
+        "http://127.0.0.1:8000",
+    ]
+    max_request_bytes: int = 5 * 1024 * 1024
+    rate_limit_requests: int = 60
+    rate_limit_window_seconds: int = 60
+
     # --- database (a least-privilege role, not the admin: DB-02)
     postgres_host: str = "localhost"
     postgres_port: int = 5432

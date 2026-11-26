@@ -10,13 +10,16 @@ import uuid
 
 from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 from starlette.middleware.sessions import SessionMiddleware
 
 from app.config import get_settings
 from app.logging_config import request_id_var, setup_logging
-from app.routers import ask, health, knowledge
+from app.routers import ask, auth, health, knowledge, parcels, uploads
+from app.security.rate_limit import RateLimitMiddleware
+from app.security.request_limits import RequestSizeLimitMiddleware
 
 logger = logging.getLogger(__name__)
 
@@ -38,7 +41,27 @@ def create_app() -> FastAPI:
         SessionMiddleware,
         secret_key=settings.session_secret_key.get_secret_value(),
         same_site="lax",
+        max_age=3600,
         https_only=settings.app_environment == "production",
+    )
+
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=settings.cors_allowed_origins,
+        allow_credentials=True,
+        allow_methods=["GET", "POST", "PUT", "DELETE"],
+        allow_headers=["Content-Type", "Authorization", "X-CSRF-Token"],
+    )
+
+    app.add_middleware(
+        RequestSizeLimitMiddleware,
+        max_bytes=settings.max_request_bytes,
+    )
+
+    app.add_middleware(
+        RateLimitMiddleware,
+        limit=settings.rate_limit_requests,
+        window=settings.rate_limit_window_seconds,
     )
 
     app.mount("/static", StaticFiles(directory="app/static"), name="static")
@@ -119,8 +142,11 @@ def create_app() -> FastAPI:
         )
 
     app.include_router(health.router)
+    app.include_router(auth.router)
     app.include_router(ask.router)
     app.include_router(knowledge.router)
+    app.include_router(parcels.router)
+    app.include_router(uploads.router)
     return app
 
 

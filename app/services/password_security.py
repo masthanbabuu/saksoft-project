@@ -8,11 +8,7 @@ from argon2.low_level import Type
 
 _hasher = PasswordHasher(type=Type.ID)
 
-BLOCKLIST_FILE = (
-    Path(__file__).resolve().parents[1]
-    / "security"
-    / "common_passwords.txt"
-)
+BLOCKLIST_FILE = Path(__file__).resolve().parents[1] / "security" / "common_passwords.txt"
 
 BLOCKLIST = frozenset(
     line.strip().casefold()
@@ -46,12 +42,15 @@ def verify_password(password: str, password_hash: str) -> bool:
     except VerificationError:
         return False
 
+
 # Preserve the original hardcoded blocklist.
-BLOCKLIST = BLOCKLIST | frozenset({
-    "password12345678",
-    "123456789012345",
-    "1234567890123456",
-    "qwerty123456789",
-    "passwordpassword",
-    "adminadminadmin",
-})
+BLOCKLIST = BLOCKLIST | frozenset(
+    {
+        "password12345678",
+        "123456789012345",
+        "1234567890123456",
+        "qwerty123456789",
+        "passwordpassword",
+        "adminadminadmin",
+    }
+)

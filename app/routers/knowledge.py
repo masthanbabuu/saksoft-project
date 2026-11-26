@@ -3,13 +3,14 @@
 import secrets
 from hmac import compare_digest
 
-from fastapi import APIRouter, Form, HTTPException, Request
+from fastapi import APIRouter, Depends, Form, HTTPException, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
 from app.services import answering
+from app.services.auth_security import require_reader
 
-router = APIRouter()
+router = APIRouter(dependencies=[Depends(require_reader)])
 templates = Jinja2Templates(directory="app/templates")
 
 # Explicitly enable autoescaping for all template output.
