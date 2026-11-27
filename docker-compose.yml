@@ -4,21 +4,27 @@
 # (Careful: "docker compose down -v" also deletes the data volume. Playbook CLI-09.)
 #
 # BEFORE FIRST USE replace the <PLACEHOLDERS> (see starter_kit/PLACEHOLDERS.md):
-#   <POSTGRES_IMAGE_TAG> <POSTGRES_IMAGE_DIGEST> <CADDY_IMAGE_TAG> <CADDY_IMAGE_DIGEST> <APP_IMAGE_TAG>
+#   <POSTGRES_IMAGE_TAG> <POSTGRES_IMAGE_DIGEST> 2-alpine 003a97808e781aa9f7e75cc2f43d34d461099031faf5e20faefb9f61126836f0 release-a
 
 services:
   db:
-    image: postgres:<POSTGRES_IMAGE_TAG>@sha256:<POSTGRES_IMAGE_DIGEST>
+    user: "999:999"
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: [ALL]
+    image: pgvector/pgvector:pg16@sha256:484e838076e04939d27d3e176e91c86eea96236126023be8d3059761122e579f
     restart: unless-stopped
     # Admin credentials come from `.env` (read only by Compose). The app never gets them (CFG-10).
     environment:
+      EXECUTIONS_DATA_PRUNE: "true"
+      EXECUTIONS_DATA_MAX_AGE: "24"
+      EXECUTIONS_DATA_PRUNE_MAX_COUNT: "1000"
       POSTGRES_USER: ${POSTGRES_ADMIN_USER}
       POSTGRES_PASSWORD: ${POSTGRES_ADMIN_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
     volumes:
       # Named volume: data survives container re-creation.
       # CHECK the image page for the data path of your Postgres version (see PLACEHOLDERS.md).
-      - db_data:<POSTGRES_DATA_PATH>
+      - db_data:/var/lib/postgresql/data
       # This file runs once, when the database is created for the first time (DB-03).
       - ./sql/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
     # No "ports:" on purpose. Only containers on this Compose network can reach the database (DB-12).
@@ -36,7 +42,7 @@ services:
 
   app:
     build: .
-    image: fde-service:<APP_IMAGE_TAG>        # a real version, never "latest" (CTR-09)
+    image: fde-service:release-a        # a real version, never "latest" (CTR-09)
     restart: unless-stopped
     ports:
       - "127.0.0.1:8081:8000"                  # reachable only through the proxy below
@@ -53,15 +59,39 @@ services:
     cpus: 1
 
   proxy:
-    image: caddy:<CADDY_IMAGE_TAG>@sha256:<CADDY_IMAGE_DIGEST>
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: [ALL]
+    cap_add: [NET_BIND_SERVICE]
+    mem_limit: 256m
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    image: caddy:2-alpine@sha256:003a97808e781aa9f7e75cc2f43d34d461099031faf5e20faefb9f61126836f0
     restart: unless-stopped
     ports:
-      - "80:80"                                # Caddy gets the certificate on port 80
-      - "443:443"                              # and serves HTTPS on port 443
+      - "127.0.0.1:80:80"                                # Caddy gets the certificate on port 80
+      - "127.0.0.1:443:443"                              # and serves HTTPS on port 443
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
       - caddy_data:/data                       # keeps the certificates
     depends_on: [app]
+
+  langgraph:
+    image: langgraph-agent:release-a
+    restart: unless-stopped
+    env_file: [agent.env]
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: [ALL]
+    mem_limit: 512m
+    cpus: 1
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
 
 volumes:
   db_data:

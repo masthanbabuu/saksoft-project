@@ -31,6 +31,9 @@ dependencies = [
     "pdf2image>=1.17.0",
     "tiktoken>=0.14.0",
     "psycopg[binary]>=3.3.8",
+    "itsdangerous>=2.2.0",
+    "argon2-cffi>=25.1.0",
+    "email-validator>=2.4.0",
 ]
 
 [dependency-groups]

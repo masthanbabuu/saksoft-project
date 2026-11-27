@@ -1,3 +1,32 @@
+CREATE TABLE IF NOT EXISTS parcels (
+    id BIGINT PRIMARY KEY,
+    name VARCHAR(150) NOT NULL,
+    status VARCHAR(30) NOT NULL,
+    category VARCHAR(50),
+    created_at DATE NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS hubs (
+    id BIGINT PRIMARY KEY,
+    parent_id BIGINT NOT NULL REFERENCES parcels(id),
+    label VARCHAR(50) NOT NULL,
+    amount NUMERIC(12,2) NOT NULL CHECK (amount >= 0)
+);
+
+CREATE TABLE IF NOT EXISTS scan_events (
+    id BIGINT PRIMARY KEY,
+    parent_id BIGINT NOT NULL REFERENCES hubs(id),
+    event VARCHAR(100) NOT NULL,
+    happened_at DATE NOT NULL
+);
+
+-- Indexes for common filtering and chronological sorting
+CREATE INDEX IF NOT EXISTS idx_parcels_status_created
+    ON parcels(status, created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_scan_events_parent_date
+    ON scan_events(parent_id, happened_at DESC);
+
+
 -- sql/schema.sql: the ONE definition of the database (Playbook DB-03).
 -- To change the schema, edit this file in place. Do not create separate ALTER files.
 -- Docker runs this file when the database is first created (see docker-compose.yml).
@@ -14,3 +43,44 @@ CREATE TABLE IF NOT EXISTS documents (
 
 -- One reason per index (DB-04): this one speeds up "documents from one source".
 CREATE INDEX IF NOT EXISTS idx_documents_source ON documents (source);
+
+-- Day 16: Authentication and session management.
+
+CREATE TABLE IF NOT EXISTS auth_users (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    email TEXT NOT NULL UNIQUE,
+    password_hash TEXT NOT NULL,
+    role TEXT NOT NULL DEFAULT 'reader'
+        CHECK (role IN ('reader', 'admin')),
+    created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE TABLE IF NOT EXISTS auth_sessions (
+    token_hash TEXT PRIMARY KEY,
+    user_id BIGINT NOT NULL REFERENCES auth_users(id)
+        ON DELETE CASCADE,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+    expires_at TIMESTAMPTZ NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS auth_audit_events (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    user_id BIGINT REFERENCES auth_users(id),
+    event_type TEXT NOT NULL,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE TABLE IF NOT EXISTS auth_login_attempts (
+    identifier_hash TEXT PRIMARY KEY,
+    failed_attempts INTEGER NOT NULL DEFAULT 0,
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+    locked_until TIMESTAMPTZ
+);
+
+-- Day 16: Parcel ownership.
+ALTER TABLE parcels
+ADD COLUMN IF NOT EXISTS owner_user_id BIGINT
+REFERENCES auth_users(id);
+
+CREATE INDEX IF NOT EXISTS idx_parcels_owner
+ON parcels (owner_user_id);

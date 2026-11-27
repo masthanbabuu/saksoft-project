@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Knowledge Assistant</title>
+    <link rel="stylesheet" href="/static/knowledge.css">
+    <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.4/dist/htmx.min.js"
+            defer></script>
+</head>
+<body>
+    <main class="container">
+        <h1>Knowledge Assistant</h1>
+        <p>Ask a question about your organization's knowledge base.</p>
+
+        <form hx-post="/knowledge/ask"
+              hx-target="#answer"
+              hx-swap="innerHTML"
+              hx-indicator="#loading">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+
+            <label for="question">Your question</label>
+            <textarea id="question"
+                      name="question"
+                      rows="4"
+                      maxlength="2000"
+                      required
+                      placeholder="Type your question here"></textarea>
+
+            <button type="submit">Ask question</button>
+            <p id="loading" class="loading" role="status" aria-live="polite">
+                Finding an answer...
+            </p>
+        </form>
+
+        <section aria-labelledby="answer-heading">
+            <h2 id="answer-heading">Answer</h2>
+            <div id="answer" aria-live="polite" aria-atomic="true">
+                <p>Your answer will appear here.</p>
+            </div>
+        </section>
+
+        <section aria-labelledby="checklist-heading">
+            <h2 id="checklist-heading">Usability checklist</h2>
+            <ul>
+                <li>Clear status messages are provided.</li>
+                <li>Errors explain how to recover.</li>
+                <li>Instructions use plain language.</li>
+                <li>All controls work with a keyboard.</li>
+                <li>Visible focus indicators are provided.</li>
+                <li>Text and controls have sufficient contrast.</li>
+            </ul>
+        </section>
+    </main>
+</body>
+</html>

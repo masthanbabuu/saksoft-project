@@ -1,6 +1,7 @@
 """Starter tests. They show the style: one behaviour per test, named
 test_<unit>_<condition>_<expected> (Playbook TST-11)."""
 
+import pytest
 from fastapi.testclient import TestClient
 from pydantic import SecretStr
 
@@ -151,6 +152,7 @@ def test_api_docs_are_disabled_in_production(monkeypatch):
 
     production_settings = Settings(
         app_environment="production",
+        session_secret_key=SecretStr("test-session-secret-key"),
         postgres_password=SecretStr("test-only"),
         llm_base_url="https://example.com",
         llm_model="test-model",
@@ -179,3 +181,19 @@ def test_ready_dependency_failure_returns_503(monkeypatch):
         "status": "not ready",
         "problems": "database unavailable",
     }
+
+
+@pytest.fixture(autouse=True)
+def authenticated_test_user():
+    from app.main import app
+    from app.services.auth_security import (
+        AuthenticatedUser,
+        get_current_user,
+    )
+
+    app.dependency_overrides[get_current_user] = lambda: AuthenticatedUser(id=1, role="reader")
+
+    try:
+        yield
+    finally:
+        app.dependency_overrides.pop(get_current_user, None)

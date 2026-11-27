@@ -20,6 +20,7 @@ def test_docs_enabled_only_in_development():
 
     production = Settings(
         app_environment="production",
+        session_secret_key=SecretStr("test-session-secret-key"),
         postgres_password=SecretStr("test-db-password"),
         llm_base_url="https://example.com/v1",
         llm_model="test-model",
@@ -29,7 +30,11 @@ def test_docs_enabled_only_in_development():
 
 
 def test_development_settings_allow_missing_credentials():
-    settings = Settings(app_environment="development")
+    settings = Settings(
+        app_environment="development",
+        postgres_password=SecretStr(""),
+        llm_api_key=SecretStr(""),
+    )
 
     assert settings.postgres_password.get_secret_value() == ""
     assert settings.llm_api_key.get_secret_value() == ""
@@ -40,12 +45,20 @@ def test_production_settings_reject_missing_credentials():
     from pydantic import ValidationError
 
     with pytest.raises(ValidationError, match="Missing required production settings"):
-        Settings(app_environment="production")
+        Settings(
+            app_environment="production",
+            session_secret_key=SecretStr("dev-only-change-this-secret"),
+            postgres_password=SecretStr(""),
+            llm_base_url="",
+            llm_model="",
+            llm_api_key=SecretStr(""),
+        )
 
 
 def test_production_settings_accept_all_required_credentials():
     settings = Settings(
         app_environment="production",
+        session_secret_key=SecretStr("test-session-secret-key"),
         postgres_password=SecretStr("test-db-password"),
         llm_base_url="https://example.com/v1",
         llm_model="test-model",

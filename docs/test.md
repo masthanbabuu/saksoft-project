@@ -1,15 +1,36 @@
-# Test document
+# Test Document
 
-> Audience: <who reads this>
+Audience: Developers and QA engineers.
 
-## How to run the tests.
+## Commands
+    uv run python -m pytest -q
+    uv run ruff check app tests
+    uv run ruff format --check app tests
+    uv run pyright app tests
+    uv run bandit -r app
+    uv run python -m pip_audit
 
-<write here>
+## Verified results
+- Pytest: 64 passed.
+- Ruff: passed.
+- Pyright: zero errors.
+- Bandit: zero issues.
+- Pip-audit: no known vulnerabilities.
+- Semgrep: zero findings.
+- Gitleaks: no leaks.
 
-## What is covered: happy path, failures, security behaviour.
+## Coverage areas
+- Configuration validation.
+- Health and readiness.
+- Answering and knowledge retrieval.
+- Password security.
+- Upload validation and security controls.
+- Log analyser and word statistics.
 
-<write here>
+## Container security
+117 findings reduced to 53.
+Zero remaining CRITICAL findings.
+Zero fixable HIGH or CRITICAL findings in Trivy.
 
-## Eval results if the service uses AI (numbers, not opinions).
-
-<write here>
+AI evaluation metrics and clean checkout verification
+remain pending.

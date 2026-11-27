@@ -124,6 +124,7 @@ def test_ask_passes_tenant_and_role_to_retriever():
         generator=generator,
     )
 
+    assert retriever.last_request is not None
     assert retriever.last_request["tenant_id"] == "tenant-a"
     assert retriever.last_request["role"] == "dispatcher"
 

@@ -1,19 +1,16 @@
-# Overview
+# Project Overview
 
-> Audience: <who reads this>
+Audience: Users, developers and stakeholders.
 
-## Who this is for (audience).
+The FDE service is a FastAPI application providing
+AI-assisted knowledge retrieval and parcel information.
+It supports authentication, document uploads and health checks.
 
-<write here>
+## Users
+- Readers: Access permitted information.
+- Administrators: Manage authorized resources.
 
-## What the service does in two sentences.
-
-<write here>
-
-## Who uses it and what they can do.
-
-<write here>
-
-## Main limits and known issues.
-
-<write here>
+## Known limitations
+- Live LLM connectivity requires verification.
+- 53 HIGH container vulnerabilities remain unresolved.
+- Production approval is pending.

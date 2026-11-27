@@ -22,3 +22,6 @@ Thumbs.db
 # Local data
 uploads/
 *.sqlite3
+data/uploads/
+
+agent.env
