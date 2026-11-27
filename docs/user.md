@@ -1,11 +1,21 @@
-# User guide
+# User Guide
 
-> Audience: <who reads this>
+Audience: Application users.
 
-## What a user can do, with screenshots that contain no real data.
+## Getting started
+Open http://127.0.0.1:8081/knowledge
+in the configured local deployment.
 
-<write here>
+## Features
+- Register and sign in.
+- Ask knowledge-related questions.
+- Access permitted parcel information.
+- Upload supported documents.
+- Sign out when finished.
 
-## Common questions.
+## Common questions
+- Access denied: check authentication and permissions.
+- No answer: the available information may be insufficient.
+- Upload rejected: check the file type and size.
 
-<write here>
+Screenshots using synthetic data remain pending.

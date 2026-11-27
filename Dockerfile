@@ -32,6 +32,9 @@ RUN uv sync --locked --no-dev --no-install-project
 FROM python:3.14.4-slim@sha256:2ca02f32b4d9d893863367ce07ec1972819f476dd38d8612f2a9cb6a41cbb727 AS runtime
 
 # Run as a normal user with a fixed ID, never as root (CTR-02).
+RUN apt-get update && apt-get upgrade -y && rm -rf /var/lib/apt/lists/*
+RUN python -m pip install --no-cache-dir --upgrade pip==26.3
+
 RUN useradd --create-home --uid 1000 --shell /bin/sh appuser
 
 WORKDIR /app

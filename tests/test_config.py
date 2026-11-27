@@ -45,7 +45,14 @@ def test_production_settings_reject_missing_credentials():
     from pydantic import ValidationError
 
     with pytest.raises(ValidationError, match="Missing required production settings"):
-        Settings(app_environment="production")
+        Settings(
+            app_environment="production",
+            session_secret_key=SecretStr("dev-only-change-this-secret"),
+            postgres_password=SecretStr(""),
+            llm_base_url="",
+            llm_model="",
+            llm_api_key=SecretStr(""),
+        )
 
 
 def test_production_settings_accept_all_required_credentials():

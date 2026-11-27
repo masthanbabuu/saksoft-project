@@ -24,7 +24,7 @@ jobs:
       - run: uv run ruff format --check  # formatting
       - run: uv run ruff check           # lint
       - run: uv run pyright              # types
-      - run: uv run pytest               # tests
+      - run: uv run python -m pytest               # tests
       - run: uv run bandit -r app        # risky code patterns
       - run: uv run pip-audit            # known vulnerable dependencies
 

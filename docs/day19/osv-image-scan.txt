@@ -1,0 +1,160 @@
+Scanning local image tarball "/image.tar"
+Starting filesystem walk for root: 
+End status: 1079 dirs visited, 10573 inodes visited, 11704 Extract calls, 159.179771ms elapsed, 159.179904ms wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 59.543µs elapsed, 59.618µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 21.502µs elapsed, 21.571µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 63.646µs elapsed, 63.741µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 1.014458ms elapsed, 1.014613ms wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 1.731974ms elapsed, 1.732301ms wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 936.009µs elapsed, 936.177µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 63.583µs elapsed, 63.711µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 65.6µs elapsed, 65.72µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 54.908µs elapsed, 55.06µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 52.21µs elapsed, 52.267µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 59.144µs elapsed, 59.26µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 989.603µs elapsed, 989.746µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 47.138µs elapsed, 47.195µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 49.826µs elapsed, 49.928µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 63.725µs elapsed, 63.839µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 52.774µs elapsed, 52.897µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 53.106µs elapsed, 53.161µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 53.344µs elapsed, 53.445µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 95.212µs elapsed, 95.339µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 45.519µs elapsed, 45.577µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 59.922µs elapsed, 59.982µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 150.442µs elapsed, 150.564µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 28.464µs elapsed, 28.547µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 114.423µs elapsed, 114.5µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 102.683µs elapsed, 102.79µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 65.299µs elapsed, 65.406µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 79.891µs elapsed, 79.974µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 139.651µs elapsed, 139.761µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 70.97µs elapsed, 71.018µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 87.715µs elapsed, 87.802µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 49.593µs elapsed, 49.665µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 47.936µs elapsed, 48.024µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 69.699µs elapsed, 69.748µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 519.484µs elapsed, 519.662µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 57.239µs elapsed, 57.337µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 64.541µs elapsed, 64.621µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 50.995µs elapsed, 51.092µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 48.969µs elapsed, 49.081µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 60.801µs elapsed, 60.893µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 43.861µs elapsed, 43.974µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 31.207µs elapsed, 31.291µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 65.506µs elapsed, 65.632µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 34.612µs elapsed, 34.704µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 62.498µs elapsed, 62.575µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 44.04µs elapsed, 44.1µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 26.313µs elapsed, 26.372µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 98.524µs elapsed, 98.626µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 55.822µs elapsed, 55.885µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 46.136µs elapsed, 46.192µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 16.326µs elapsed, 16.37µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 67.565µs elapsed, 67.653µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 54.847µs elapsed, 54.945µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 52.176µs elapsed, 52.278µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 48.117µs elapsed, 48.184µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 38.657µs elapsed, 38.738µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 59.596µs elapsed, 59.687µs wall time
+Starting filesystem walk for root: 
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 55.037µs elapsed, 55.136µs wall time
+
+
+Container Scanning Result (Debian GNU/Linux 13 (trixie)) (Based on "python" image):
+Total 18 packages affected by 79 known vulnerabilities (0 Critical, 36 High, 36 Medium, 5 Low, 2 Unknown) from 2 ecosystems.
+4 vulnerabilities can be fixed.
+
+
+PyPI
++---------------------------------------------------------------------------------------------+
+| Source:artifact:usr/local/lib/python3.14/ensurepip/_bundled/pip-26.0.1-py3-none-any.whl     |
++---------+-------------------+---------------+------------+------------------+---------------+
+| PACKAGE | INSTALLED VERSION | FIX AVAILABLE | VULN COUNT | INTRODUCED LAYER | IN BASE IMAGE |
++---------+-------------------+---------------+------------+------------------+---------------+
+| pip     | 26.0.1            | Fix Available |          4 | # 5 Layer        | python        |
++---------+-------------------+---------------+------------+------------------+---------------+
+Debian:13
++----------------------------------------------------------------------------------------------------------------------------------------------------+
+| Source:os:var/lib/dpkg/status                                                                                                                      |
++----------------+-----------------------------------+------------------+------------+----------------------------+------------------+---------------+
+| SOURCE PACKAGE | INSTALLED VERSION                 | FIX AVAILABLE    | VULN COUNT | BINARY PACKAGES (COUNT)    | INTRODUCED LAYER | IN BASE IMAGE |
++----------------+-----------------------------------+------------------+------------+----------------------------+------------------+---------------+
+| acl            | 2.3.2-2+b1                        | No fix available |          2 | libacl1                    | # 0 Layer        | debian        |
+| attr           | 1:2.5.2-3                         | No fix available |          1 | libattr1                   | # 0 Layer        | debian        |
+| bzip2          | 1.0.8-6                           | No fix available |          1 | libbz2-1.0                 | # 0 Layer        | debian        |
+| dpkg           | 1.22.22                           | No fix available |          1 | dpkg                       | # 0 Layer        | debian        |
+| gcc-14         | 14.2.0-19                         | No fix available |          7 | gcc-14-base... (3)         | # 0 Layer        | debian        |
+| glibc          | 2.41-12+deb13u5                   | No fix available |          7 | libc-bin, libc6            | # 8 Layer        | --            |
+| ncurses        | 6.5+20250216-2                    | No fix available |          2 | libncursesw6... (4)        | # 5 Layer        | python        |
+| openssl        | 3.5.9-1~deb13u1                   | No fix available |         14 | libssl3t64, openssl... (3) | # 8 Layer        | --            |
+| pam            | 1.7.0-5                           | No fix available |          2 | libpam-modules... (4)      | # 0 Layer        | debian        |
+| perl           | 5.40.1-6+deb13u1                  | No fix available |          4 | perl-base                  | # 8 Layer        | --            |
+| shadow         | 1:4.17.4-2+deb13u1                | No fix available |          1 | login.defs, passwd         | # 8 Layer        | --            |
+| sqlite3        | 3.46.1-7+deb13u2                  | No fix available |         13 | libsqlite3-0               | # 8 Layer        | --            |
+| systemd        | 257.13-1~deb13u1                  | No fix available |          2 | libsystemd0... (2)         | # 8 Layer        | --            |
+| tar            | 1.35+dfsg-3.1                     | No fix available |          3 | tar                        | # 0 Layer        | debian        |
+| util-linux     | 1:2.41.5-0+deb13u1                | No fix available |          5 | bsdutils                   | # 8 Layer        | --            |
+| util-linux     | 1:4.16.0-2+really2.41.5-0+deb13u1 | No fix available |          5 | login                      | # 8 Layer        | --            |
+| util-linux     | 2.41.5-0+deb13u1                  | No fix available |          5 | libblkid1... (7)           | # 8 Layer        | --            |
++----------------+-----------------------------------+------------------+------------+----------------------------+------------------+---------------+
+
+Hiding 27 number of vulnerabilities deemed unimportant, use --all-vulns to show them.
+For the most comprehensive scan results, we recommend using the HTML output: `osv-scanner scan image --serve <image_name>`.
+You can also view the full vulnerability list in your terminal with: `osv-scanner scan image --format vertical <image_name>`.

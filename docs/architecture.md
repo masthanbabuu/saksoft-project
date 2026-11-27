@@ -1,19 +1,30 @@
 # Architecture
 
-> Audience: <who reads this>
+Audience: Developers and technical reviewers.
 
-## Components and how they connect (a text diagram, for example Mermaid).
+## Components
 
-<write here>
+User -> Caddy HTTPS proxy -> FastAPI -> PostgreSQL
+                                |
+                                -> LLM provider
 
-## The data model.
+LangGraph runs as a separate internal service.
 
-<write here>
+## Data model
+- Parcels, hubs and scan events.
+- Documents and permitted roles.
+- Authentication users, sessions and audit events.
 
-## The main flows, step by step.
+## Request flow
+1. User submits a request.
+2. FastAPI validates the input and applicable permissions.
+3. The service retrieves permitted information.
+4. The answering service processes the question.
+5. The application returns a response.
 
-<write here>
-
-## Security controls and where each is enforced.
-
-<write here>
+## Security
+- Authentication and authorization.
+- Password hashing and session management.
+- Request size and rate limits.
+- Non-root application container.
+- HTTPS and security headers.
